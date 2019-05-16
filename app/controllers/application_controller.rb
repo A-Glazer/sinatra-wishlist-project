@@ -11,4 +11,18 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+
+  helpers do
+
+    def current_user(session)
+        @user = User.find_by_id(session[:user_id])
+    end
+
+    def is_logged_in?(session)
+        !!session[:user_id]
+    end
+  end
 end
+
+#need to make :user database table
+# => username, password (read Securing Passwords in Sinatra and set up password_digest in table)
