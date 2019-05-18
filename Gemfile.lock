@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/bmabey/database_cleaner.git
-  revision: 4c2408ffdbbd990e78d6590f4ef6ba5e58aca673
+  revision: d4d3ca182b897c066720181058aefef8d7e13f64
   specs:
     database_cleaner (1.7.0)
 
@@ -57,7 +57,7 @@ GEM
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rake (12.3.2)
-    regexp_parser (1.4.0)
+    regexp_parser (1.5.0)
     require_all (2.0.0)
     ripl (0.7.1)
       bond (~> 0.5.1)

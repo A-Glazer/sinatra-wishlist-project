@@ -5,6 +5,8 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    enable :sessions
+    set :session_secret, "shopping"
   end
 
   get "/" do
@@ -14,15 +16,14 @@ class ApplicationController < Sinatra::Base
 
   helpers do
 
-    def current_user(session)
+    def current_user
         @user = User.find_by_id(session[:user_id])
     end
 
-    def is_logged_in?(session)
+    def is_logged_in?
         !!session[:user_id]
     end
   end
 end
 
-#need to make :user database table
-# => username, password (read Securing Passwords in Sinatra and set up password_digest in table)
+

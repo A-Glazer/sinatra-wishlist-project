@@ -5,6 +5,13 @@ class UserController < ApplicationController
     end
 
     post '/users/signup' do
+        if params[:username] != nil && params[:password] != nil
+            @user = User.create(:username => params[:username], :password => params[:password])
+            session[:user_id] = @user.id
+            redirect to "/users/#{@user.id}"
+        else
+            erb :"users/error"
+        end
     end
 
     get '/login' do
@@ -13,20 +20,21 @@ class UserController < ApplicationController
 
     post '/login' do
         @user = User.find_by(:username => params[:username])
-        if @user != nil && @user.password == params[:password]    
+        if @user && @user.authenticate(params[:password])
           session[:user_id] = @user.id
-          redirect to "/user/#{@user.id}"
+          redirect to "/users/#{@user.id}"
         end
-          erb :error
+          erb :"users/error"
           #need error page
     end
 
     get '/users/:id' do
         @user = User.find_by_id(session[:user_id])
-    if Helpers.is_logged_in?(session)
-      erb :account
+        # binding.pry
+    if is_logged_in?
+      erb :"users/account"
     else
-      erb :error
+        erb :"users/error"
     end
 
     end
