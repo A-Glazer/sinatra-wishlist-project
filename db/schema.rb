@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(version: 20190521190031) do
 
   create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.string "quantity"
+    t.string  "name"
+    t.integer "quantity"
   end
 
   create_table "users", force: :cascade do |t|
