@@ -1,52 +1,62 @@
 class ListController < ApplicationController
 
-    get '/view/:id' do
-        @user = User.find_by_id(session[:user_id])
-            if is_logged_in?
-                @items = Item.all
-            erb :"/list/view"
+    get "/view" do
+        if is_logged_in? && current_user
+                session[:user_id] = @user.id       
+                @items = current_user.items
+                erb :"/list/view"
             else
                 erb :"users/error"
             end
     end
 
-    get '/new/:id' do
-        @user = User.find_by_id(session[:user_id])
-            if is_logged_in?
-                @items = Item.all
-            erb :"/list/new"
+    get '/new' do
+        if is_logged_in? && current_user
+            session[:user_id] = @user.id
+                erb :"/list/new"
             else
                 erb :"users/error"
             end
     end
 
-    post '/list/view' do
-        @user = User.find_by_id(session[:user_id])
-        @items = Item.create(name: params[:name], quantity: params[:quantity])
-        # binding.pry
-        @user.items << @items
-        redirect to :"/view/:id"
+    post '/items' do
+        if is_logged_in? && current_user && !params[:name].empty? && !params[:quantity].empty?
+            session[:user_id] = current_user.id       
+            @item = Item.create(name: params[:name], quantity: params[:quantity])
+            current_user.items << @item
+            redirect to "/view"
+        else
+            redirect to "/new"
+        end
     end
 
     get '/list/:id/edit' do
-        @user = User.find_by_id(session[:user_id])
-        # binding.pry
-        if is_logged_in?
-            binding.pry
-            @items = Item.find_by(id: params[:id])
-
-        erb :"/list/edit"
+        if is_logged_in? && current_user
+            session[:user_id] = current_user.id                   
+            @item = Item.find_by(id: params[:id])
+            erb :"list/edit"
         else
             erb :"users/error"
         end
     end
 
     patch '/list/:id' do
-        @user = User.find_by_id(session[:user_id])
-        if is_logged_in?
-            @items.update(params[:items])
-            # binding.pry
-            redirect to :"/view/:id"
+        if is_logged_in? && current_user && !params[:name].empty? && !params[:quantity].empty?
+            session[:user_id] = current_user.id    
+            @item = Item.find_by(id: params[:id])
+            @item.update(name: params[:name], quantity: params[:quantity])
+            redirect to "/view"
+        else
+            erb :"users/error"
+        end
+    end
+
+    delete '/list/:id' do
+        if is_logged_in? && current_user
+            session[:user_id] = current_user.id 
+            @item = Item.find_by(id: params[:id])  
+            @item.delete
+            redirect to "/view"
         else
             erb :"users/error"
         end

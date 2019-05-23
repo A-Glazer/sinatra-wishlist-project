@@ -11,14 +11,15 @@
    
    <% @items.each do |item| %>
    <% if item.user_id == session[:user_id] %> 
-    <center><p><%= item.name %> * <%=item.quantity%></p></center><br>
-    <br>
+    <center><p><%=item.quantity%> <%= item.name %> <a href='/list/<%= item.id %>/edit'>Edit</a></p></center>
+    
     <% end %>
     <% end %>
 
-       
-<li><a href="/logout">Logout</a></li>
+<center>
+<%# <a href="/logout"><button type="button">Clear Shopping List</button></a> => need to fix %>
+<a href="/logout"><button type="button">Logout</button></a>       
+</center>
   
 </div>
 
-#need a delete button, edit
