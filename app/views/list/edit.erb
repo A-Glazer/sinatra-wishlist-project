@@ -9,7 +9,7 @@
     
      <center> <p>Please enter the item you would like to edit:</center></p>
  
-   <form action="/list/view <%= @items.id %>" method="POST"><br>
+   <form action='/list/view/<%= @items.id %>' method="POST"><br>
    <input id="hidden" type="hidden" name="_method" value="patch">
         <center><p>Item: <input type="text" name="name">
         Quantity: <input type="text" name="quantity"></p></center>
@@ -17,7 +17,7 @@
    </form>
    <br/><br/>or<br/>
 
-    <form action="/list/view" method="POST"><br>
+    <form action="/list/view/:id" method="POST"><br>
    <input id="hidden" type="hidden" name="_method" value="delete">
    <input type="submit" value="Delete" id="Delete"> </center>
    </form>

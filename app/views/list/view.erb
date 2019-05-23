@@ -10,8 +10,10 @@
      <center> <p>Here are your items:</center></p>
    
    <% @items.each do |item| %>
-    <center><p>Name:<%= item.name %> * Quantity: <%=item.quantity%></p></center><br>
+   <% if item.user_id == session[:user_id] %> 
+    <center><p><%= item.name %> * <%=item.quantity%></p></center><br>
     <br>
+    <% end %>
     <% end %>
 
        
