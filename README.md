@@ -1,7 +1,7 @@
-Welcome to Smart Shopping, where you can create your very own shopping list! This application allows a user to create an account and customize their own shopping list. They can create, edit, and delete items, as well as decide the quantity they would like to buy. Enjoy and happy shopping.
+Welcome to Smart Shopping, where you can create your very own shopping list! 
 
 ## Usage
-
+Welcome to Smart Shopping, where you can create your very own shopping list! This application allows a user to create an account and customize their own shopping list. They can create, edit, and delete items, as well as decide the quantity they would like to buy. Enjoy and happy shopping.
 
 ## Installation
 1. Fork and clone the app 
