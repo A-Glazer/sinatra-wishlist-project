@@ -2,7 +2,7 @@ class ListController < ApplicationController
 
     get "/view" do
         if is_logged_in? && current_user
-                session[:user_id] = @user.id       
+                session[:user_id] = current_user.id       
                 @items = current_user.items
                 erb :"/list/view"
             else
@@ -12,7 +12,7 @@ class ListController < ApplicationController
 
     get '/new' do
         if is_logged_in? && current_user
-            session[:user_id] = @user.id
+            session[:user_id] = current_user.id
                 erb :"/list/new"
             else
                 erb :"users/error"
