@@ -15,7 +15,21 @@
   </head>
   <body>
     <div class="wrapper">
+<div class ="navbar"  >
+<% if is_logged_in?  %>
 
+<p>
+  <center><a href="/">Home</a> * <a href='/view'>Your Shopping List</a> * <a href='/new'>Add More Items</a> * <a href="/logout">Logout</a></center>
+</p>
+
+
+      
+<%else%>
+<p>
+  <a href="/">Home</a> * <a href="/signup">Sign Up</a> * <a href="/login">Login</a>
+</p>
+<%end%>
+</div>
         <%= yield %>
 
       <footer class="branding">
