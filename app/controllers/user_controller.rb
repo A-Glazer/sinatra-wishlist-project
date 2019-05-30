@@ -38,8 +38,8 @@ class UserController < ApplicationController
     end
 
     get '/users/:id' do
-        if is_logged_in? && current_user
-            session[:user_id] = current_user.id
+        if is_logged_in? && current_user.id == params[:id]
+            # session[:user_id] = current_user.id
             erb :"users/account"
         else
             erb :"users/error"

@@ -10,10 +10,10 @@
      <center> <p>Here are your items:</center></p>
    
    <% @items.each do |item| %>
-   <% if item.user_id == session[:user_id] %> 
+   <%# if item.user_id == session[:user_id] %> 
     <center><p><%=item.quantity%> <%= item.name %> <a href='/list/<%= item.id %>/edit'>Edit</a></p></center>
     
-    <% end %>
+    <%# end %>
     <% end %>
 
 <center>
